@@ -1,4 +1,5 @@
 import com.wizard.CharacterCreaton;
+import com.wizard.Wizard;
 
 import java.util.Scanner;
 
@@ -6,37 +7,29 @@ public class WizardWars {
 
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
-        Wizard wizard = new Wizard();
+        Wizard player = new Wizard();
         CharacterCreaton characterCreaton = new CharacterCreaton();
-        System.out.println("Welcome to the Wizard Game");
+        System.out.println("Welcome to the WizardWars");
         System.out.println("Please enter your first name.");
 
 
-        do {
-            String nameCheck = scanner.next();
-            if (characterCreaton.validateName(nameCheck) == true) {
-                wizard.setFirstName(nameCheck);
-                break;
-            } else {
-                System.out.println("A name must have only letters and numbers. Please enter it again");
-
+        while(player.getFirstName()==null || player.getFirstName().isEmpty()) {
+            System.out.println("Please enter your characters first name");
+            String incomingFirstName = scanner.nextLine();
+            if(characterCreaton.validateFirstName(incomingFirstName)){
+                player.setFirstName(incomingFirstName);
             }
-        } while (true);
+        }
 
-        System.out.println("Now, " + wizard.getFirstName() + ", please enter your last name");
-
-        do {
-            String nameCheck = scanner.nextLine();
-            if (characterCreaton.validateName(nameCheck) == true) {
-                wizard.setLastName(nameCheck);
-                break;
-            } else {
-                System.out.println("A name can have only letters and numbers. Please enter it again");
-
+        while(player.getLastName()==null || player.getLastName().isEmpty()) {
+            System.out.println("Please enter your characters last name");
+            String incomingLastName = scanner.nextLine();
+            if(characterCreaton.validateLastName(incomingLastName)){
+                player.setLastName(incomingLastName);
             }
-        } while (true);
+        }
 
-        System.out.println("You're a wizard, " + wizard.getFullName());
+        System.out.println("So " + player.getFullName() + ", are you ready to die?");
 
 
     }

@@ -1,3 +1,5 @@
+package com.wizard;
+
 public class Wizard {
     private String firstName;
     private String lastName;
