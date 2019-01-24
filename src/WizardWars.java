@@ -29,7 +29,7 @@ public class WizardWars {
             }
         }
 
-        System.out.println("So " + player.getFullName() + ", are you ready to die?");
+        System.out.println("So " + player.getFirstName() + " " + player.getLastName() +  ", are you ready to die?");
 
 
     }
