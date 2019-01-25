@@ -8,6 +8,7 @@ public class WizardWars {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Wizard player = new Wizard();
+
         CharacterCreaton characterCreaton = new CharacterCreaton();
         System.out.println("Welcome to the WizardWars");
         System.out.println("Please enter your first name.");
