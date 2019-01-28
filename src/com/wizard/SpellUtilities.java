@@ -2,7 +2,6 @@ package com.wizard;
 
 import java.util.Random;
 
-import static javafx.scene.input.KeyCode.W;
 
 public class SpellUtilities {
 
@@ -28,7 +27,7 @@ public class SpellUtilities {
             int damage = getRandomNumberInRange(min, max);
 
             damage = damage * -1;
-            System.out.println("The spell" + nameOfSpell + "was successful. It cost " + damage + " damage.");
+            System.out.println("The spell " + nameOfSpell + " was successful. It cost " + damage + " damage.");
             return damage;
 
 
@@ -53,7 +52,7 @@ public class SpellUtilities {
             while (true) {
                 if (randomSuccessRate <= successRate) {
                     int healing = getRandomNumberInRange(min, max);
-                    System.out.println("The spell gave you " + healing + " health.");
+                    System.out.println("The spell gave " + healing + " health.");
                     totalHealing = totalHealing + healing;
 
                     randomSuccessRate = getRandomNumberInRange(1, 100);
@@ -65,7 +64,7 @@ public class SpellUtilities {
                 } else {
 
                     System.out.println("The spell " + nameOfSpell + " wasn't successful.");
-                    System.out.println("You got " + totalHealing + "health.");
+                    System.out.println("it gave " + totalHealing + " health.");
                     return totalHealing;
                 }
             }
@@ -84,19 +83,19 @@ public class SpellUtilities {
             System.out.println("There is no spell");
             return 0;
         }
-
-
-        if (spells.getSpellList().containsKey(nameOfSpell)) {
+        else if (spells.getSpellList().containsKey(nameOfSpell)) {
             if (nameOfSpell.equals("Vulnera Sanentur")) {
-                castHealing(nameOfSpell);
+                return castHealing(nameOfSpell);
             } else {
-                castDamage(nameOfSpell);
+                return castDamage(nameOfSpell);
             }
         }
-        System.out.println("you panicked and mispelled the spell");
-        return 0;
+        else {
 
+            System.out.println("you panicked and mispelled the spell");
+            return 0;
 
+        }
     }
 }
 

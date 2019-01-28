@@ -2,6 +2,7 @@ package com.wizard;
 
 
 import java.util.Map;
+import java.util.Scanner;
 
 public class WizardShop {
 
@@ -20,23 +21,46 @@ public class WizardShop {
 
 
 
-    public void buySpell(String requestedSpell, Wizard wizard) {
+    public void buySpell(String requestedSpell, Wizard player) {
 
         if (!spells.getSpellList().containsKey(requestedSpell)) {
             System.out.println("There is no such a spell");
 
-        } else if (wizard.getListOfBoughtSpells().contains(requestedSpell)) {
+        } else if (player.getListOfBoughtSpells().contains(requestedSpell)) {
             System.out.println("You already know this spell");
 
-        } else if (wizard.getMoney() >= spells.getSpellList().get(requestedSpell).getPrice()) {
+        } else if (player.getMoney() >= spells.getSpellList().get(requestedSpell).getPrice()) {
 
-            wizard.setMoney(wizard.getMoney() - spells.getSpellList().get(requestedSpell).getPrice());
+            player.setMoney(player.getMoney() - spells.getSpellList().get(requestedSpell).getPrice());
 
-            wizard.getListOfBoughtSpells().add(requestedSpell);
+            player.getListOfBoughtSpells().add(requestedSpell);
 
-            System.out.println("You have bought" + requestedSpell);
+            System.out.println("You have bought " + requestedSpell);
+            System.out.println("Remaining balance: " + player.getMoney());
         } else {
             System.out.println("You don't have enough money.");
+        }
+
+
+    }
+
+
+
+
+    public void playerBuyFromWizardShop(Wizard player) {
+        Scanner scanner = new Scanner(System.in);
+            System.out.println("This is the shop for wizards.");
+            System.out.println("What do you want to do? 'done' = exit shop,");
+            System.out.println("Your options are: ");
+            printAllSpells();
+        while (true){
+            String userInput = scanner.nextLine();
+            if (userInput.equalsIgnoreCase("done")){
+                System.out.println("You know the following spells: ");
+                System.out.println(player.getListOfBoughtSpells().toString());
+                break;
+            }else buySpell(userInput, player);
+
         }
 
 
